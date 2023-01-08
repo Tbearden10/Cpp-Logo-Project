@@ -12,7 +12,8 @@ target_link_libraries(CPP-Logo PRIVATE sfml-graphics)
 target_compile_features(CPP-Logo PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET CPP-Logo POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:CPP-Logo> $<TARGET_FILE_DIR:CPP-Logo> COMMAND_EXPAND_LISTS)
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:CPP-Logo> $<TARGET_FILE_DIR:CPP-Logo> COMMAND_EXPAND_LISTS
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/src/data $<TARGET_FILE_DIR:CPP-Logo>/data)
 endif()
 
 install(TARGETS CPP-Logo)
